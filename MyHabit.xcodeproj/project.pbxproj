@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		EC18C74628C1749800907216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C74528C1749800907216 /* AppDelegate.swift */; };
 		EC18C74828C1749800907216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C74728C1749800907216 /* SceneDelegate.swift */; };
-		EC18C74A28C1749800907216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C74928C1749800907216 /* ViewController.swift */; };
-		EC18C74D28C1749800907216 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC18C74B28C1749800907216 /* Main.storyboard */; };
 		EC18C74F28C1749B00907216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC18C74E28C1749B00907216 /* Assets.xcassets */; };
 		EC18C75228C1749B00907216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC18C75028C1749B00907216 /* LaunchScreen.storyboard */; };
+		EC18C75B28C175FC00907216 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C75A28C175FC00907216 /* TabBarController.swift */; };
+		EC18C75D28C179E200907216 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C75C28C179E200907216 /* HabitsViewController.swift */; };
+		EC18C75F28C17A1000907216 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C75E28C17A1000907216 /* InfoViewController.swift */; };
+		EC18C76128C17A3000907216 /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C76028C17A3000907216 /* HabitViewController.swift */; };
+		EC18C76328C17A8D00907216 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C76228C17A8D00907216 /* HabitDetailsViewController.swift */; };
+		EC18C76628C17ACF00907216 /* HabitsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C76528C17ACF00907216 /* HabitsCollectionCell.swift */; };
+		EC18C76828C17B0900907216 /* ProgressBarCollectionCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C76728C17B0900907216 /* ProgressBarCollectionCellCollectionViewCell.swift */; };
+		EC18C76A28C17B6B00907216 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C76928C17B6B00907216 /* HabitsStore.swift */; };
+		EC18C76E28C17BEA00907216 /* HabitDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C76D28C17BEA00907216 /* HabitDetailTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC18C74228C1749800907216 /* MyHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC18C74528C1749800907216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC18C74728C1749800907216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EC18C74928C1749800907216 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EC18C74C28C1749800907216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC18C74E28C1749B00907216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC18C75128C1749B00907216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC18C75328C1749B00907216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC18C75A28C175FC00907216 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EC18C75C28C179E200907216 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
+		EC18C75E28C17A1000907216 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		EC18C76028C17A3000907216 /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
+		EC18C76228C17A8D00907216 /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
+		EC18C76528C17ACF00907216 /* HabitsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionCell.swift; sourceTree = "<group>"; };
+		EC18C76728C17B0900907216 /* ProgressBarCollectionCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarCollectionCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		EC18C76928C17B6B00907216 /* HabitsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
+		EC18C76D28C17BEA00907216 /* HabitDetailTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,38 @@
 		EC18C74428C1749800907216 /* MyHabit */ = {
 			isa = PBXGroup;
 			children = (
+				EC18C76428C17AA600907216 /* ViewCell */,
+				EC18C75928C1759B00907216 /* ViewController */,
 				EC18C74528C1749800907216 /* AppDelegate.swift */,
 				EC18C74728C1749800907216 /* SceneDelegate.swift */,
-				EC18C74928C1749800907216 /* ViewController.swift */,
-				EC18C74B28C1749800907216 /* Main.storyboard */,
+				EC18C76928C17B6B00907216 /* HabitsStore.swift */,
 				EC18C74E28C1749B00907216 /* Assets.xcassets */,
 				EC18C75028C1749B00907216 /* LaunchScreen.storyboard */,
 				EC18C75328C1749B00907216 /* Info.plist */,
 			);
 			path = MyHabit;
+			sourceTree = "<group>";
+		};
+		EC18C75928C1759B00907216 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC18C75A28C175FC00907216 /* TabBarController.swift */,
+				EC18C75C28C179E200907216 /* HabitsViewController.swift */,
+				EC18C75E28C17A1000907216 /* InfoViewController.swift */,
+				EC18C76028C17A3000907216 /* HabitViewController.swift */,
+				EC18C76228C17A8D00907216 /* HabitDetailsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EC18C76428C17AA600907216 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EC18C76528C17ACF00907216 /* HabitsCollectionCell.swift */,
+				EC18C76728C17B0900907216 /* ProgressBarCollectionCellCollectionViewCell.swift */,
+				EC18C76D28C17BEA00907216 /* HabitDetailTableCell.swift */,
+			);
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +164,6 @@
 			files = (
 				EC18C75228C1749B00907216 /* LaunchScreen.storyboard in Resources */,
 				EC18C74F28C1749B00907216 /* Assets.xcassets in Resources */,
-				EC18C74D28C1749800907216 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +174,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC18C74A28C1749800907216 /* ViewController.swift in Sources */,
+				EC18C75B28C175FC00907216 /* TabBarController.swift in Sources */,
+				EC18C76E28C17BEA00907216 /* HabitDetailTableCell.swift in Sources */,
+				EC18C76128C17A3000907216 /* HabitViewController.swift in Sources */,
 				EC18C74628C1749800907216 /* AppDelegate.swift in Sources */,
+				EC18C76328C17A8D00907216 /* HabitDetailsViewController.swift in Sources */,
+				EC18C76628C17ACF00907216 /* HabitsCollectionCell.swift in Sources */,
 				EC18C74828C1749800907216 /* SceneDelegate.swift in Sources */,
+				EC18C76828C17B0900907216 /* ProgressBarCollectionCellCollectionViewCell.swift in Sources */,
+				EC18C75D28C179E200907216 /* HabitsViewController.swift in Sources */,
+				EC18C76A28C17B6B00907216 /* HabitsStore.swift in Sources */,
+				EC18C75F28C17A1000907216 /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EC18C74B28C1749800907216 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EC18C74C28C1749800907216 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EC18C75028C1749B00907216 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +330,6 @@
 				INFOPLIST_FILE = MyHabit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +357,6 @@
 				INFOPLIST_FILE = MyHabit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
