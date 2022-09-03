@@ -90,6 +90,7 @@ class HabitViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         configurationHabit()
     }
 
@@ -109,7 +110,6 @@ class HabitViewController: UIViewController {
         navigationItem.rightBarButtonItem = buttonCreate
         navigationItem.leftBarButtonItem = buttonCancel
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.prefersLargeTitles = false
 
         view.addSubview(nameTextFielLabel)
         view.addSubview(titleHabitTextField)
@@ -231,7 +231,6 @@ extension HabitViewController: UIColorPickerViewControllerDelegate, UITextFieldD
     
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         colorPixel.tintColor = viewController.selectedColor
-        dismiss(animated: true)
     }
 
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {

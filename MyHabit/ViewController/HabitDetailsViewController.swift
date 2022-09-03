@@ -27,14 +27,13 @@ class HabitDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Сделать зарядку"
+        navigationItem.largeTitleDisplayMode = .never
         configurationHabilDetail()
     }
 
     private func configurationHabilDetail() {
         view.backgroundColor = .systemGroupedBackground
-        navigationItem.title = "Сделать зарядку"
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-
         view.addSubview(habilDetailView)
         
         let buttonModifiy: UIBarButtonItem = {
@@ -78,8 +77,6 @@ extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource
             let cellDefault = tableView.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
             return cellDefault
         }
-        let data = dateDetails[indexPath.row]
-        //let habitData = HabitsStore.shared.habits[habitIdSelected ?? 0]
         
         return cellDetail
     }

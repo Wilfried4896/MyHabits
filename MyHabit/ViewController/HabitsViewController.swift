@@ -32,8 +32,8 @@ class HabitsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Сегодня"
+        navigationController?.navigationBar.prefersLargeTitles = true
         configurationHabits()
     }
 
@@ -44,8 +44,7 @@ class HabitsViewController: UIViewController {
             return addHabit
         }()
 
-        navigationItem.title = "Сегодня"
-        self.navigationController?.navigationBar.tintColor = .systemPurple
+        navigationController?.navigationBar.tintColor = .systemPurple
 
         view.addSubview(habitsCollectionCell)
         navigationItem.rightBarButtonItem = buttonAddHabit
@@ -62,7 +61,7 @@ class HabitsViewController: UIViewController {
     @objc func addHabits() {
         let habitViewController = HabitViewController()
         habitViewController.navigationItem.title = "Создать"
-        self.navigationController?.pushViewController(habitViewController, animated: true)
+        navigationController?.pushViewController(habitViewController, animated: true)
     }
 }
 
