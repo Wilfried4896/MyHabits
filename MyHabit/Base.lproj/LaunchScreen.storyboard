@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,33 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyHabits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fa-px-TRr">
-                                <rect key="frame" x="122" y="760" width="170" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="Ynm-30-EtP"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="MyHabits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fa-px-TRr">
+                                <rect key="frame" x="122" y="769" width="194" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" systemColor="systemPurpleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon-114px-40pt-modified" translatesAutoresizingMaskIntoConstraints="NO" id="rS6-DL-YzE">
-                                <rect key="frame" x="115" y="357" width="185" height="182"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon-80px-40pt-modified" translatesAutoresizingMaskIntoConstraints="NO" id="3wu-zD-kNl">
+                                <rect key="frame" x="120" y="355" width="175" height="186"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9fa-px-TRr" secondAttribute="bottom" constant="60" id="2a9-h4-nD5"/>
-                            <constraint firstItem="9fa-px-TRr" firstAttribute="top" secondItem="rS6-DL-YzE" secondAttribute="bottom" constant="221" id="8Iv-ja-I8U"/>
-                            <constraint firstItem="9fa-px-TRr" firstAttribute="trailing" secondItem="rS6-DL-YzE" secondAttribute="trailing" constant="-8" id="Fd6-bN-VaB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3wu-zD-kNl" secondAttribute="bottom" constant="321" id="BEh-6G-TKm"/>
                             <constraint firstItem="9fa-px-TRr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="122" id="MfJ-bp-p8H"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9fa-px-TRr" secondAttribute="bottom" constant="60" id="UVM-NY-OmS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rS6-DL-YzE" secondAttribute="trailing" constant="114" id="bdr-4k-CZq"/>
-                            <constraint firstItem="9fa-px-TRr" firstAttribute="leading" secondItem="rS6-DL-YzE" secondAttribute="leading" constant="7" id="dD8-Hg-ODj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rS6-DL-YzE" secondAttribute="bottom" constant="323" id="gXR-WL-d6N"/>
-                            <constraint firstItem="rS6-DL-YzE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="313" id="i97-c9-8q1"/>
-                            <constraint firstItem="rS6-DL-YzE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="115" id="ibO-bf-G8V"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9fa-px-TRr" secondAttribute="trailing" constant="122" id="zHb-1y-ULt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9fa-px-TRr" secondAttribute="bottom" constant="69" id="UVM-NY-OmS"/>
+                            <constraint firstItem="3wu-zD-kNl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="311" id="Y2U-zn-6oI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3wu-zD-kNl" secondAttribute="trailing" constant="119" id="g3f-ar-gK2"/>
+                            <constraint firstItem="3wu-zD-kNl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="lo2-sf-qUs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9fa-px-TRr" secondAttribute="trailing" constant="98" id="zHb-1y-ULt"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -52,7 +45,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon-114px-40pt-modified" width="57" height="57"/>
+        <image name="AppIcon-80px-40pt-modified" width="80" height="80"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

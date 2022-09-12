@@ -9,8 +9,10 @@ import UIKit
 
 class ProgressBarCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = "ProgressBarCollectionCellCollectionViewCell"
-
+    static let identifier = "ProgressBarCollectionCell"
+    weak var delegateProgress: HabitEditDelegate?
+    var indexPath: IndexPath?
+    
     private lazy var progressLabel: UILabel = {
         let progress = UILabel()
         progress.font = .systemFont(ofSize: 20, weight: .semibold)

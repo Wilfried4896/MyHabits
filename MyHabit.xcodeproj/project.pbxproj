@@ -87,8 +87,8 @@
 			children = (
 				EC18C75A28C175FC00907216 /* TabBarController.swift */,
 				EC18C75C28C179E200907216 /* HabitsViewController.swift */,
-				EC18C75E28C17A1000907216 /* InfoViewController.swift */,
 				EC18C76028C17A3000907216 /* HabitViewController.swift */,
+				EC18C75E28C17A1000907216 /* InfoViewController.swift */,
 				EC18C76228C17A8D00907216 /* HabitDetailsViewController.swift */,
 			);
 			path = ViewController;

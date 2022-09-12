@@ -7,17 +7,22 @@
 
 import UIKit
 
+protocol HabitViewDelegeteRemove: AnyObject {
+    func removeHabit(indexPath: IndexPath)
+}
+
+protocol HabitViewDelegeteCreate: AnyObject {
+    func createHabit()
+}
+
 class HabitViewController: UIViewController {
 
-    let habitsViewController = HabitsViewController()
-    var habitIdSelectedShow: Int?
-
-    private lazy var contientView: UIView = {
-        let contientView = UIView()
-        contientView.translatesAutoresizingMaskIntoConstraints = false
-        return contientView
-    }()
-
+    weak var delegateRemove: HabitViewDelegeteRemove?
+    weak var delegateCreate: HabitViewDelegeteCreate?
+    
+    var indexPath: IndexPath?
+    var store = HabitsStore.shared
+    
     private lazy var nameTextFielLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.text = "НАЗАВИНИЕ"
@@ -90,7 +95,7 @@ class HabitViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
+        print(Int(self.store.todayProgress * 100))
         configurationHabit()
     }
 
@@ -110,7 +115,8 @@ class HabitViewController: UIViewController {
         navigationItem.rightBarButtonItem = buttonCreate
         navigationItem.leftBarButtonItem = buttonCancel
         view.backgroundColor = .white
-
+        navigationItem.largeTitleDisplayMode = .never
+        
         view.addSubview(nameTextFielLabel)
         view.addSubview(titleHabitTextField)
         view.addSubview(colorLabel)
@@ -160,18 +166,23 @@ class HabitViewController: UIViewController {
     }
 
     @objc func cancel() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
-
-    
-
+     
     @objc func create() {
+        
         if buttonDelete.isHidden == false {
+            
+            guard let indexPath = self.indexPath else {
+                print(#function)
+                return
+            }
+            
             let editHabit = Habit(name: titleHabitTextField.text ?? "NO DATA",
                                   date: timeSelected.date,
                                   color: colorPixel.tintColor)
-            editHabit.trackDates = HabitsStore.shared.habits[habitIdSelectedShow ?? 0].trackDates
-            HabitsStore.shared.habits[habitIdSelectedShow ?? 0] = editHabit
+            editHabit.trackDates = self.store.habits[indexPath.item].trackDates
+            self.store.habits[indexPath.item] = editHabit
         }
 
         else {
@@ -179,11 +190,10 @@ class HabitViewController: UIViewController {
                                      date: timeSelected.date,
                                      color: colorPixel.tintColor)
 
-            let store = HabitsStore.shared
-            store.habits.append(newHabit)
+            self.store.habits.append(newHabit)
         }
-        HabitsStore.shared.save()
-        self.habitsViewController.habitsCollectionCell.reloadData()
+        
+        self.delegateCreate?.createHabit()
         navigationController?.popToRootViewController(animated: true)
     }
 
@@ -206,23 +216,26 @@ class HabitViewController: UIViewController {
     }
 
     @objc func deleteHabitSelected() {
-
-        let selectedHabit = HabitsStore.shared.habits[habitIdSelectedShow ?? 0]
-        let messageAlert = UIAlertController(title: "Удалить привычку", message: "Хотите удалить привычку \(selectedHabit.name)", preferredStyle: .alert)
-
-        let cancel = UIAlertAction(title: "Отменить", style: .cancel) {_ in
-            self.navigationController?.popViewController(animated: true)
+        
+        guard let indexPath = self.indexPath else {
+            return
         }
 
-        let delete = UIAlertAction(title: "Удалить", style: .destructive) {_ in
-            HabitsStore.shared.habits.removeAll(where: {$0.name == selectedHabit.name})
-            HabitsStore.shared.save()
-            self.habitsViewController.habitsCollectionCell.reloadData()
+        let messageAlert = UIAlertController(title: "Удалить привычку", message: "Хотите удалить привычку \(HabitsStore.shared.habits[indexPath.row].name)", preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Отменить", style: .cancel) {_ in
             self.navigationController?.popToRootViewController(animated: true)
         }
 
+        let delete = UIAlertAction(title: "Удалить", style: .destructive) {_ in
+            self.dismiss(animated: true) {
+                self.delegateRemove?.removeHabit(indexPath: indexPath)
+            }
+        }
+        
         messageAlert.addAction(cancel)
         messageAlert.addAction(delete)
+        
         present(messageAlert, animated: true, completion: nil)
     }
 }

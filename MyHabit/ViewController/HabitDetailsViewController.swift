@@ -7,10 +7,19 @@
 
 import UIKit
 
+protocol HabitDetailsViewDelegate: AnyObject {
+    func removeHabit(indexPath: IndexPath)
+}
+
+protocol HabitEditDelegate: AnyObject {
+    func editHabit()
+}
+
 class HabitDetailsViewController: UIViewController {
 
-    var habitIdSelected: Int?
-    let habitViewController = HabitViewController()
+    var indexPath: IndexPath?
+    weak var delegateRemove: HabitDetailsViewDelegate?
+    weak var delegateEdit: HabitEditDelegate?
     let dateDetails = HabitsStore.shared.dates
 
     lazy var habilDetailView: UITableView = {
@@ -53,12 +62,22 @@ class HabitDetailsViewController: UIViewController {
     }
 
     @objc func modifiyHabit() {
+        
+        guard let indexPath = indexPath else {
+            return
+        }
+
+        let habitViewController = HabitViewController()
+        habitViewController.delegateRemove = self
+        habitViewController.delegateCreate = self
+
         navigationController?.pushViewController(habitViewController, animated: true)
         habitViewController.title = "Править"
         habitViewController.buttonDelete.isHidden = false
-        habitViewController.habitIdSelectedShow = habitIdSelected
-
-        let selectedHabit = HabitsStore.shared.habits[habitIdSelected!]
+        habitViewController.indexPath = indexPath
+        
+        let selectedHabit = HabitsStore.shared.habits[indexPath.item]
+        
         habitViewController.titleHabitTextField.text = selectedHabit.name
         habitViewController.colorPixel.tintColor = selectedHabit.color
         habitViewController.timeSelected.date = selectedHabit.date
@@ -69,7 +88,7 @@ class HabitDetailsViewController: UIViewController {
 extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dateDetails.count
+        return HabitsStore.shared.dates.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,5 +106,17 @@ extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "АКТИВНОСТЬ"
+    }
+}
+
+extension HabitDetailsViewController: HabitViewDelegeteRemove, HabitViewDelegeteCreate {
+
+    func createHabit() {
+        self.delegateEdit?.editHabit()
+    }
+    
+    func removeHabit(indexPath: IndexPath) {
+        self.navigationController?.popToRootViewController(animated: true)
+        self.delegateRemove?.removeHabit(indexPath: indexPath)
     }
 }

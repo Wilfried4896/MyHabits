@@ -8,9 +8,8 @@
 import UIKit
 
 class HabitsCollectionCell: UICollectionViewCell {
-    
     static let identifier: String = "HabitsCollectionCell"
-
+    
     lazy var headlineLabel: UILabel = {
         let headline = UILabel()
         headline.numberOfLines = 2
