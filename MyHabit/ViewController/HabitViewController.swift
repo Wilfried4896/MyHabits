@@ -36,6 +36,7 @@ class HabitViewController: UIViewController {
         titlehabit.borderStyle = .none
         titlehabit.placeholder = "Бегать по утрам ..."
         titlehabit.delegate = self
+        
         titlehabit.translatesAutoresizingMaskIntoConstraints = false
         return titlehabit
     }()
@@ -95,7 +96,6 @@ class HabitViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Int(self.store.todayProgress * 100))
         configurationHabit()
     }
 

@@ -6,10 +6,16 @@
 //
 
 import UIKit
+protocol HabitsCollectionCellDelegate: AnyObject {
+    func didTapStatusButton()
+}
 
 class HabitsCollectionCell: UICollectionViewCell {
     static let identifier: String = "HabitsCollectionCell"
+    weak var delegate: HabitsCollectionCellDelegate?
     
+    let config = UIImage.SymbolConfiguration(pointSize: 40)
+
     lazy var headlineLabel: UILabel = {
         let headline = UILabel()
         headline.numberOfLines = 2
@@ -35,11 +41,12 @@ class HabitsCollectionCell: UICollectionViewCell {
     }()
 
     lazy var buttonStatus: UIButton = {
-        let status = UIButton()
+        let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 40)
-        status.setImage(UIImage(systemName: "circle", withConfiguration: config), for: .normal)
-        status.translatesAutoresizingMaskIntoConstraints = false
-        return status
+        button.setImage(UIImage(systemName: "circle", withConfiguration: config), for: .normal)
+        button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
 
     override init(frame: CGRect) {
@@ -90,5 +97,25 @@ class HabitsCollectionCell: UICollectionViewCell {
         headlineLabel.tintColor = habit.color
         buttonStatus.tintColor = habit.color
         headlineLabel.textColor = habit.color
+        
+        if habit.isAlreadyTakenToday {
+            buttonStatus.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
+            buttonStatus.isEnabled = false
+        }
+    }
+    
+    @objc func didTapButton(_ sender: UIButton) {
+        
+        let habit = HabitsStore.shared.habits[sender.tag]
+        
+        if !habit.isAlreadyTakenToday {
+            sender.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
+        }
+        
+        sender.isEnabled = false
+        
+        HabitsStore.shared.track(habit)
+        footNoteLabel.text = "Счетчик: \(habit.trackDates.count)"
+        self.delegate?.didTapStatusButton()
     }
 }

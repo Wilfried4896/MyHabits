@@ -91,20 +91,19 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
         switch indexPath.section {
             case 0:
                 let cellProgress = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressBarCollectionViewCell.identifier, for: indexPath) as! ProgressBarCollectionViewCell
-                cellProgress.configurationProgressView()
+                cellProgress.delegateProgress = self
+            
+                cellProgress.progressViewSetProgress(store.todayProgress)
                 cellProgress.layer.cornerRadius = 10
                 cellProgress.backgroundColor = .white
-                cellProgress.delegateProgress = self
                 return cellProgress
             case 1:
                 let cellHabits = collectionView.dequeueReusableCell(withReuseIdentifier: HabitsCollectionCell.identifier, for: indexPath) as! HabitsCollectionCell
+                cellHabits.delegate = self
+            
                 let habitShow = habits[indexPath.row]
                 
                 cellHabits.configurationSetUp(habit: habitShow)
-                if habitShow.isAlreadyTakenToday {
-                    cellHabits.buttonStatus.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
-                }
-                cellHabits.buttonStatus.addTarget(self, action: #selector(didSelected(_ :)), for: .touchUpInside)
                 cellHabits.buttonStatus.tag = indexPath.item
                 cellHabits.layer.cornerRadius = 10
                 cellHabits.backgroundColor = .white
@@ -113,14 +112,6 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
             default:
                 let cellDefault = collectionView.dequeueReusableCell(withReuseIdentifier: "Default", for: indexPath)
                 return cellDefault
-            }
-        }
-    
-        @objc func didSelected(_ sender: UIButton) {
-            let habit = habits[sender.tag]
-            if !habit.isAlreadyTakenToday {
-                sender.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
-                self.store.track(habit)
             }
         }
 
@@ -136,28 +127,35 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         let habitDetailsViewController = HabitDetailsViewController()
         habitDetailsViewController.indexPath = indexPath
+        
         habitDetailsViewController.delegateRemove = self
         habitDetailsViewController.delegateEdit = self
+        
         navigationController?.pushViewController(habitDetailsViewController, animated: true)
     }
 }
 
-extension HabitsViewController: HabitDetailsViewDelegate, HabitViewDelegeteCreate, HabitEditDelegate {
+extension HabitsViewController: HabitDetailsViewDelegate, HabitViewDelegeteCreate, HabitEditDelegate, HabitsCollectionCellDelegate {
+    
+    func didTapStatusButton() {
+        let cell = self.habitsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? ProgressBarCollectionViewCell
+        
+        cell?.progressViewSetProgress(self.store.todayProgress)
+    }
+
     func editHabit() {
         self.habitsCollectionView.reloadData()
     }
     
     func createHabit() {
-        let newHabitIndex = self.store.habits.count - 1
-        self.habitsCollectionView.performBatchUpdates {
-           self.habitsCollectionView.insertItems(at: [IndexPath(row: newHabitIndex, section: 1)])
-        }
+        self.habitsCollectionView.reloadData()
     }
     
     func removeHabit(indexPath: IndexPath) {
         self.store.habits.remove(at: indexPath.item)
-        self.habitsCollectionView.performBatchUpdates {
-            self.habitsCollectionView.deleteItems(at: [indexPath])
-        }
+//        self.habitsCollectionView.performBatchUpdates {
+//            self.habitsCollectionView.deleteItems(at: [indexPath])
+//        }
+        self.habitsCollectionView.reloadData()
     }
 }

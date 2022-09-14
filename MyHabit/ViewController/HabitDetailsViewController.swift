@@ -20,7 +20,6 @@ class HabitDetailsViewController: UIViewController {
     var indexPath: IndexPath?
     weak var delegateRemove: HabitDetailsViewDelegate?
     weak var delegateEdit: HabitEditDelegate?
-    let dateDetails = HabitsStore.shared.dates
 
     lazy var habilDetailView: UITableView = {
         let habilDetail = UITableView()
@@ -70,7 +69,7 @@ class HabitDetailsViewController: UIViewController {
         let habitViewController = HabitViewController()
         habitViewController.delegateRemove = self
         habitViewController.delegateCreate = self
-
+        
         navigationController?.pushViewController(habitViewController, animated: true)
         habitViewController.title = "Править"
         habitViewController.buttonDelete.isHidden = false
@@ -88,7 +87,8 @@ class HabitDetailsViewController: UIViewController {
 extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HabitsStore.shared.dates.count
+       
+        return HabitsStore.shared.habits[indexPath?.item ?? 0].trackDates.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,7 +96,7 @@ extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource
             let cellDefault = tableView.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
             return cellDefault
         }
-        
+        cellDetail.configurationData(indexPath: indexPath)
         return cellDetail
     }
 

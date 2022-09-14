@@ -17,6 +17,15 @@ class HabitDetailCell: UITableViewCell {
         detail.translatesAutoresizingMaskIntoConstraints = false
         return detail
     }()
+    
+    lazy var checkmarkBool: UIButton = {
+        let checkmar = UIButton()
+        checkmar.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        checkmar.tintColor = .purple
+        checkmar.isHidden = true
+        checkmar.translatesAutoresizingMaskIntoConstraints = false
+        return checkmar
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,21 +45,23 @@ class HabitDetailCell: UITableViewCell {
 
     private func configurationDetailCell() {
         contentView.addSubview(detailLabel)
-        //contentView.addSubview(checkmarkBool)
+        contentView.addSubview(checkmarkBool)
 
         NSLayoutConstraint.activate([
             detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             detailLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
 
-//            checkmarkBool.centerYAnchor.constraint(equalTo: detailLabel.centerYAnchor),
-//            checkmarkBool.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-//            checkmarkBool.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15)
+            checkmarkBool.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            checkmarkBool.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            checkmarkBool.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
     }
 
-    func configurationData(index: Int) {
-        detailLabel.text = HabitsStore.shared.trackDateString(forIndex: index)
-        //detailLabel.text = habit.name
+    func configurationData(indexPath: IndexPath) {
+        detailLabel.text = HabitsStore.shared.trackDateString(forIndex: HabitsStore.shared.dates.count - 1 - indexPath.item)
+        if HabitsStore.shared.habit(HabitsStore.shared.habits[indexPath.item], isTrackedIn: HabitsStore.shared.dates[HabitsStore.shared.dates.count - 1 - indexPath.item]) == true {
+            self.checkmarkBool.isHidden = false
+        }
     }
 }
