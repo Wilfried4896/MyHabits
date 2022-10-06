@@ -11,6 +11,11 @@ class ProgressBarCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "ProgressBarCollectionCell"
     weak var delegateProgress: HabitsCollectionCellDelegate?
+    
+    private var progress: Float {
+        HabitsStore.shared.todayProgress
+    }
+    
     var indexPath: IndexPath?
     
     private lazy var progressLabel: UILabel = {
@@ -65,9 +70,10 @@ class ProgressBarCollectionViewCell: UICollectionViewCell {
             procenteLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
 
             //progressViewConstraint
-            progressView.topAnchor.constraint(equalTo: procenteLabel.bottomAnchor, constant: 15),
+            progressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             progressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            
             progressView.heightAnchor.constraint(equalToConstant: 7)
         ])
     }
@@ -76,5 +82,10 @@ class ProgressBarCollectionViewCell: UICollectionViewCell {
         progressLabel.text = "Всё получится!"
         progressView.setProgress(progress, animated: true)
         procenteLabel.text = "\(Int(progress * 100)) %"
+    }
+    
+    func updateProgress() {
+        procenteLabel.text = "\(Int(progress * 100)) %"
+        progressView.setProgress(progress, animated: true)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 protocol HabitsCollectionCellDelegate: AnyObject {
     func didTapStatusButton()
 }
@@ -42,8 +43,7 @@ class HabitsCollectionCell: UICollectionViewCell {
 
     lazy var buttonStatus: UIButton = {
         let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 40)
-        button.setImage(UIImage(systemName: "circle", withConfiguration: config), for: .normal)
+        //button.setImage(UIImage(systemName: "circle", withConfiguration: config), for: .normal)
         button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -98,21 +98,24 @@ class HabitsCollectionCell: UICollectionViewCell {
         buttonStatus.tintColor = habit.color
         headlineLabel.textColor = habit.color
         
-        if habit.isAlreadyTakenToday {
-            buttonStatus.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
-            buttonStatus.isEnabled = false
+        guard habit.isAlreadyTakenToday == true  else {
+            buttonStatus.setImage(UIImage(systemName: "circle", withConfiguration: config), for: .normal)
+            return
+            
         }
+            buttonStatus.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
     }
     
     @objc func didTapButton(_ sender: UIButton) {
         
         let habit = HabitsStore.shared.habits[sender.tag]
         
-        if !habit.isAlreadyTakenToday {
+        print(HabitsStore.shared.habits.count)
+        if habit.isAlreadyTakenToday == false {
             sender.setImage(UIImage(systemName: "checkmark.circle.fill", withConfiguration: config), for: .normal)
         }
         
-        sender.isEnabled = false
+        
         
         HabitsStore.shared.track(habit)
         footNoteLabel.text = "Счетчик: \(habit.trackDates.count)"

@@ -8,10 +8,6 @@
 import UIKit
 
 class HabitsViewController: UIViewController {
-
-    var habits: [Habit] {
-        HabitsStore.shared.habits
-    }
     
     var store = HabitsStore.shared
     let config = UIImage.SymbolConfiguration(pointSize: 40)
@@ -36,6 +32,7 @@ class HabitsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //store.habits.removeAll()
         configurationHabits()
     }
 
@@ -81,7 +78,7 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
             case 0:
                 return 1
             case 1:
-            return habits.count
+            return store.habits.count
             default:
                 return 0
         }
@@ -91,6 +88,7 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
         switch indexPath.section {
             case 0:
                 let cellProgress = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressBarCollectionViewCell.identifier, for: indexPath) as! ProgressBarCollectionViewCell
+            
                 cellProgress.delegateProgress = self
             
                 cellProgress.progressViewSetProgress(store.todayProgress)
@@ -99,11 +97,13 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
                 return cellProgress
             case 1:
                 let cellHabits = collectionView.dequeueReusableCell(withReuseIdentifier: HabitsCollectionCell.identifier, for: indexPath) as! HabitsCollectionCell
+            
                 cellHabits.delegate = self
             
-                let habitShow = habits[indexPath.row]
+                let habitShow = store.habits[indexPath.row]
                 
                 cellHabits.configurationSetUp(habit: habitShow)
+            
                 cellHabits.buttonStatus.tag = indexPath.item
                 cellHabits.layer.cornerRadius = 10
                 cellHabits.backgroundColor = .white
@@ -136,26 +136,33 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout, UICollection
 }
 
 extension HabitsViewController: HabitDetailsViewDelegate, HabitViewDelegeteCreate, HabitEditDelegate, HabitsCollectionCellDelegate {
-    
+
     func didTapStatusButton() {
-        let cell = self.habitsCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? ProgressBarCollectionViewCell
+        let cell = self.habitsCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? ProgressBarCollectionViewCell
         
         cell?.progressViewSetProgress(self.store.todayProgress)
     }
 
     func editHabit() {
         self.habitsCollectionView.reloadData()
+        //self.habitsCollectionView.reloadItems(at: [indexPath])
     }
     
     func createHabit() {
-        self.habitsCollectionView.reloadData()
+        self.habitsCollectionView.insertItems(at: [IndexPath(item: store.habits.count - 1, section: 1)])
+        let cell = self.habitsCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? ProgressBarCollectionViewCell
+        
+        cell?.updateProgress()
+        
     }
     
     func removeHabit(indexPath: IndexPath) {
         self.store.habits.remove(at: indexPath.item)
-//        self.habitsCollectionView.performBatchUpdates {
-//            self.habitsCollectionView.deleteItems(at: [indexPath])
-//        }
-        self.habitsCollectionView.reloadData()
+        self.habitsCollectionView.deleteItems(at: [indexPath])
+            
+        let cell = self.habitsCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? ProgressBarCollectionViewCell
+            
+        cell?.updateProgress()
+        
     }
 }

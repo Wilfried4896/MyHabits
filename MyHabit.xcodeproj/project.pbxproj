@@ -70,11 +70,10 @@
 		EC18C74428C1749800907216 /* MyHabit */ = {
 			isa = PBXGroup;
 			children = (
+				EC3E5BCD28E215AE009B3ABE /* Application */,
+				EC3E5BCC28E21594009B3ABE /* Model */,
 				EC18C76428C17AA600907216 /* ViewCell */,
 				EC18C75928C1759B00907216 /* ViewController */,
-				EC18C74528C1749800907216 /* AppDelegate.swift */,
-				EC18C74728C1749800907216 /* SceneDelegate.swift */,
-				EC18C76928C17B6B00907216 /* HabitsStore.swift */,
 				EC18C74E28C1749B00907216 /* Assets.xcassets */,
 				EC18C75028C1749B00907216 /* LaunchScreen.storyboard */,
 				EC18C75328C1749B00907216 /* Info.plist */,
@@ -102,6 +101,23 @@
 				EC18C76D28C17BEA00907216 /* HabitDetailTableCell.swift */,
 			);
 			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		EC3E5BCC28E21594009B3ABE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC18C76928C17B6B00907216 /* HabitsStore.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC3E5BCD28E215AE009B3ABE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				EC18C74528C1749800907216 /* AppDelegate.swift */,
+				EC18C74728C1749800907216 /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
